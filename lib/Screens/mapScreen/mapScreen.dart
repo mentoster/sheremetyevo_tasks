@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/opened_card.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class WayMap extends StatelessWidget {
@@ -14,7 +15,7 @@ class WayMap extends StatelessWidget {
         parallaxEnabled: true,
         backdropEnabled: true,
         panel: Center(
-          child: Text("inside"),
+          child: BottomMenu(),
         ),
         collapsed: Column(
           children: [
@@ -44,7 +45,7 @@ class WayMap extends StatelessWidget {
             ),
           ],
         ),
-        body: Text("Map"),
+        body: Text("красивая карта"),
         borderRadius: radius,
       ),
     );
