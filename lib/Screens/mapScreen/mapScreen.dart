@@ -17,34 +17,34 @@ class WayMap extends StatelessWidget {
         panel: Center(
           child: BottomMenu(),
         ),
-        collapsed: Column(
-          children: [
-            SizedBox(
-              height: 12.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 30,
-                  height: 5,
-                  decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                ),
-              ],
-            ),
-            Container(
-              // color: Theme.of(context).accentColor,
-              child: Center(
-                child: Text(
-                  "Задание",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-          ],
-        ),
+        // collapsed: Column(
+        //   children: [
+        //     SizedBox(
+        //       height: 12.0,
+        //     ),
+        //     Row(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: <Widget>[
+        //         Container(
+        //           width: 30,
+        //           height: 5,
+        //           decoration: BoxDecoration(
+        //               color: Colors.grey[300],
+        //               borderRadius: BorderRadius.all(Radius.circular(12.0))),
+        //         ),
+        //       ],
+        //     ),
+        //     Container(
+        //       // color: Theme.of(context).accentColor,
+        //       child: Center(
+        //         child: Text(
+        //           "Задание",
+        //           style: TextStyle(color: Colors.black),
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
         body: Center(child: Text("красивая карта")),
         borderRadius: radius,
       ),
