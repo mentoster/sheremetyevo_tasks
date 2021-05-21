@@ -13,42 +13,55 @@ class NewTask extends StatelessWidget {
       actionExtentRatio: 0.25,
       child: Container(
         width: double.infinity,
-        child: Container(
-          color: Colors.white,
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.indigoAccent,
-              child: Icon(Icons.flight_takeoff),
-              foregroundColor: Colors.white,
-            ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Убрать снег.'),
-                Text(
-                  'До 18:30',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            subtitle: Text('Убрать снег на 7 линии перед взлетом самолета.'),
-          ),
-        ),
+        child: InsideNewTask(),
       ),
       actions: <Widget>[
         IconSlideAction(
           caption: 'Отказаться',
           color: Colors.red,
-          icon: Icons.archive,
-          onTap: () => Text('Archive'),
+          icon: Icons.delete,
+          onTap: () => Text('Share'),
         ),
+      ],
+      secondaryActions: <Widget>[
         IconSlideAction(
-          caption: 'Принять',
+          caption: 'Начать',
           color: Colors.green,
           icon: Icons.check,
           onTap: () => Text('Share'),
         ),
       ],
+    );
+  }
+}
+
+class InsideNewTask extends StatelessWidget {
+  const InsideNewTask({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.indigoAccent,
+          child: Icon(Icons.flight_takeoff),
+          foregroundColor: Colors.white,
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Убрать снег.'),
+            Text(
+              'До 18:30',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        subtitle: Text('Убрать снег на 7 линии перед взлетом самолета.'),
+      ),
     );
   }
 }

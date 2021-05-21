@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_ns/liquid_progress_indicator.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/new_task.dart';
 
 class Task extends StatelessWidget {
   const Task({
@@ -11,7 +12,6 @@ class Task extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text("Очистить снег на 7 линии"),
         Container(
           height: 50,
           child: LiquidLinearProgressIndicator(
@@ -25,6 +25,25 @@ class Task extends StatelessWidget {
             center: Text("Осталось 50 минут"),
           ),
         ),
+        Divider(),
+        InsideNewTask(),
+        Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 35,
+                child: OutlinedButton(
+                  onPressed: () {
+                    print('Received click');
+                  },
+                  child: const Text('Выполнено'),
+                ),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
