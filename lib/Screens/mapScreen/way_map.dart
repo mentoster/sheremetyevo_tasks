@@ -29,7 +29,6 @@ class WayMap extends StatelessWidget {
           child: _isEngineer ? EngineerBottomMenu() : WorkerBottomMenu(),
         ),
         body: body(),
-        // Text("Карта"), //MapScreen(),
         borderRadius: radius,
       ),
     );
