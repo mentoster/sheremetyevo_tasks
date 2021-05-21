@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/mapScreen.dart';
 
 const users = const {
   'user@ya.ru': '1234',
@@ -55,7 +56,7 @@ class LoginScreen extends StatelessWidget {
       onSignup: _authUser,
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => Container(),
+          builder: (context) => WayMap(),
         ));
       },
       onRecoverPassword: _recoverPassword,
