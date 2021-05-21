@@ -34,6 +34,7 @@ class Task extends StatelessWidget {
             children: [
               Container(
                 height: 35,
+                padding: EdgeInsets.only(right: 15),
                 child: OutlinedButton(
                   onPressed: () {
                     print('Received click');

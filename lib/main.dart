@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sheremetyevo_tasks/Screens/login_screen.dart';
+import 'package:sheremetyevo_tasks/Screens/loginscreen/login_screen.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/way_map.dart';
 
 void main() {
@@ -31,6 +31,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return WayMap();
+    return LoginScreen();
   }
 }
