@@ -11,14 +11,14 @@ class NewTasks extends StatelessWidget {
       child: NewTask(),
       actions: <Widget>[
         IconSlideAction(
-          caption: 'Archive',
-          color: Colors.blue,
+          caption: 'Отказаться',
+          color: Colors.red,
           icon: Icons.archive,
           onTap: () => Text('Archive'),
         ),
         IconSlideAction(
-          caption: 'Share',
-          color: Colors.indigo,
+          caption: 'Принять',
+          color: Colors.green,
           icon: Icons.share,
           onTap: () => Text('Share'),
         ),

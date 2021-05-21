@@ -7,21 +7,20 @@ class NewTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: Container(
+    return Container(
       width: double.infinity,
       child: Container(
         color: Colors.white,
         child: ListTile(
           leading: CircleAvatar(
             backgroundColor: Colors.indigoAccent,
-            child: Text('3'),
+            child: Icon(Icons.calendar_today),
             foregroundColor: Colors.white,
           ),
-          title: Text('Tile n°'),
-          subtitle: Text('SlidableDrawerDelegate'),
+          title: Text('Убрать снег.'),
+          subtitle: Text('Убрать снег на 7 линии.'),
         ),
       ),
-    ));
+    );
   }
 }
