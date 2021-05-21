@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/chooseType.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/choose_character.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/way_map.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _nextPage() {
-    if (_page < 3)
+    if (_page < 2)
       setState(() {
         ++_page;
       });
@@ -39,11 +40,17 @@ class _LoginScreenState extends State<LoginScreen> {
     print("login_screen -> _isEngineer : $_isEngineer");
   }
 
+  void _chooseClass(String type) {
+    _type = type;
+    print("login_screen -> _type : $_type");
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
       ChooseCharacter(_nextPage, _changeCharacter),
-      ChooseType()
+      ChooseType(_nextPage, _chooseClass),
+      WayMap(),
     ];
     return Scaffold(
         appBar: AppBar(
@@ -54,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     _backPage();
                   },
                   icon: Icon(Icons.arrow_back_ios)),
-              const Text('Выберите проффесию'),
+              const Text('Выберите персонажа'),
             ],
           ),
         ),
