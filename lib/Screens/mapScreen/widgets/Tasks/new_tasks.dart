@@ -5,31 +5,22 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class NewTasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      actionPane: SlidableDrawerActionPane(),
-      actionExtentRatio: 0.25,
-      child: NewTask(),
-      actions: <Widget>[
-        IconSlideAction(
-          caption: 'Отказаться',
-          color: Colors.red,
-          icon: Icons.archive,
-          onTap: () => Text('Archive'),
-        ),
-        IconSlideAction(
-          caption: 'Принять',
-          color: Colors.green,
-          icon: Icons.share,
-          onTap: () => Text('Share'),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Новые задания:",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          Column(
+            children: [
+              NewTask(),
+            ],
+          ),
+        ],
+      ),
     );
-    // Column(
-    //   children: [
-    //     Text("Следующие задачи:"),
-    //     NewTask(),
-
-    //   ],
-    // );
   }
 }
