@@ -9,7 +9,6 @@ class NewTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
       child: Container(
@@ -22,7 +21,16 @@ class NewTask extends StatelessWidget {
               child: Icon(Icons.flight_takeoff),
               foregroundColor: Colors.white,
             ),
-            title: Text('Убрать снег.'),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Убрать снег.'),
+                Text(
+                  'До 18:30',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
             subtitle: Text('Убрать снег на 7 линии перед взлетом самолета.'),
           ),
         ),
@@ -37,7 +45,7 @@ class NewTask extends StatelessWidget {
         IconSlideAction(
           caption: 'Принять',
           color: Colors.green,
-          icon: Icons.share,
+          icon: Icons.check,
           onTap: () => Text('Share'),
         ),
       ],
