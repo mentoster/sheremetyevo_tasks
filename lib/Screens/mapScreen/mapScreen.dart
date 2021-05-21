@@ -45,7 +45,7 @@ class WayMap extends StatelessWidget {
             ),
           ],
         ),
-        body: Text("красивая карта"),
+        body: Center(child: Text("красивая карта")),
         borderRadius: radius,
       ),
     );
