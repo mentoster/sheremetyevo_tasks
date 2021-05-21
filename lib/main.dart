@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sheremetyevo_tasks/Screens/login_screen.dart';
-import 'package:sheremetyevo_tasks/Screens/mapScreen/mapScreen.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/way_map.dart';
 
 void main() {
   runApp(MyApp());

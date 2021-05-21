@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/map_screen.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/opened_card.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -45,7 +46,7 @@ class WayMap extends StatelessWidget {
         //     ),
         //   ],
         // ),
-        body: Center(child: Text("красивая карта")),
+        body: MapScreen(),
         borderRadius: radius,
       ),
     );

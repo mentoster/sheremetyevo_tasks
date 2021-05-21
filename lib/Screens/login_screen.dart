@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
-import 'package:sheremetyevo_tasks/Screens/mapScreen/mapScreen.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/way_map.dart';
 
 const users = const {
   'user@ya.ru': '1234',
