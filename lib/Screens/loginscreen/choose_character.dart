@@ -19,7 +19,7 @@ class ChooseCharacter extends StatelessWidget {
             OutlinedButton(
               onPressed: () {
                 nextPage();
-                changeCharacter(false);
+                changeCharacter(true);
               },
               child: const Text('Инженер'),
               style: ButtonStyle(
@@ -29,7 +29,7 @@ class ChooseCharacter extends StatelessWidget {
             OutlinedButton(
               onPressed: () {
                 nextPage();
-                changeCharacter(true);
+                changeCharacter(false);
               },
               child: const Text('Работник'),
               style: ButtonStyle(

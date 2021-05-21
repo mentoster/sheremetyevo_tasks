@@ -4,6 +4,8 @@ import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/opened_card.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class WayMap extends StatelessWidget {
+  bool _isEngineer;
+  WayMap(this._isEngineer);
   final BorderRadiusGeometry radius = BorderRadius.only(
     topLeft: Radius.circular(24.0),
     topRight: Radius.circular(24.0),
@@ -16,36 +18,8 @@ class WayMap extends StatelessWidget {
         parallaxEnabled: true,
         backdropEnabled: true,
         panel: Center(
-          child: BottomMenu(),
+          child: _isEngineer ? EngineerBottomMenu() : WorkerBottomMenu(),
         ),
-        // collapsed: Column(
-        //   children: [
-        //     SizedBox(
-        //       height: 12.0,
-        //     ),
-        //     Row(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: <Widget>[
-        //         Container(
-        //           width: 30,
-        //           height: 5,
-        //           decoration: BoxDecoration(
-        //               color: Colors.grey[300],
-        //               borderRadius: BorderRadius.all(Radius.circular(12.0))),
-        //         ),
-        //       ],
-        //     ),
-        //     Container(
-        //       // color: Theme.of(context).accentColor,
-        //       child: Center(
-        //         child: Text(
-        //           "Задание",
-        //           style: TextStyle(color: Colors.black),
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
         body: Text("Карта"), //MapScreen(),
         borderRadius: radius,
       ),

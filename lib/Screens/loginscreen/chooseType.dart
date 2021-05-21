@@ -14,19 +14,22 @@ class ChooseType extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Text("Мой \nкласс...",
-              style: TextStyle(fontSize: 108, color: Colors.black)),
+          Center(
+            child: Text("Мой\nкласс...",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 108, color: Colors.black)),
+          ),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TypeButton("грузовик/самосвал", _chooseClass),
-                TypeButton("экскаватор (погрузка снега)", _chooseClass),
+                TypeButton("грузовик", _chooseClass),
+                TypeButton("самосвал", _chooseClass),
+                TypeButton("экскаватор", _chooseClass),
                 TypeButton("роторный погрузчик", _chooseClass),
                 TypeButton("плужно-щеточная машина", _chooseClass),
-                TypeButton(" плужно-щеточная машина ,_chooseClassс реагентом",
-                    _chooseClass),
+                TypeButton("плужно-щеточная машина с реагентом.", _chooseClass),
               ],
             ),
           ),

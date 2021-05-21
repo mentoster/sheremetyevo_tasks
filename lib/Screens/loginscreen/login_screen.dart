@@ -10,13 +10,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   int _page = 0;
-
   bool _isEngineer = true;
-
   String _type = "null";
-
   bool _loadApp = false;
-
+  String titleText = 'Выберите персонажа';
   void _backPage() {
     if (_page > 0)
       setState(() {
@@ -37,11 +34,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _changeCharacter(bool isEng) {
     _isEngineer = isEng;
+    setState(() {
+      titleText = _isEngineer ? "Инженер" : "Работник";
+    });
     print("login_screen -> _isEngineer : $_isEngineer");
   }
 
   void _chooseClass(String type) {
     _type = type;
+    setState(() {
+      titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
+    });
     print("login_screen -> _type : $_type");
   }
 
@@ -50,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     List<Widget> pages = [
       ChooseCharacter(_nextPage, _changeCharacter),
       ChooseType(_nextPage, _chooseClass),
-      WayMap(),
+      WayMap(_isEngineer),
     ];
     return Scaffold(
         appBar: AppBar(
@@ -61,7 +64,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     _backPage();
                   },
                   icon: Icon(Icons.arrow_back_ios)),
-              const Text('Выберите персонажа'),
+              Expanded(
+                child: Text(
+                  titleText,
+                  overflow: TextOverflow.fade,
+                  softWrap: true,
+                ),
+              ),
             ],
           ),
         ),
