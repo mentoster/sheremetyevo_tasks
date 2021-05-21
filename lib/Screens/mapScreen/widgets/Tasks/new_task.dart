@@ -9,13 +9,19 @@ class NewTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         child: Container(
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Уборка снега"),
-                Text("16:30"),
-              ],
-            )));
+      width: double.infinity,
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.indigoAccent,
+            child: Text('3'),
+            foregroundColor: Colors.white,
+          ),
+          title: Text('Tile n°'),
+          subtitle: Text('SlidableDrawerDelegate'),
+        ),
+      ),
+    ));
   }
 }
