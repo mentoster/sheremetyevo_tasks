@@ -5,7 +5,7 @@ import 'package:location/location.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/Task_now_worker.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/create_new_task.dart';
-import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/getCoordinates.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/get_coordinates.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/task.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/tasks_list.dart';
 
@@ -20,16 +20,21 @@ class AllTasks extends StatefulWidget {
 class _AllTasksState extends State<AllTasks> {
   final bool isEngineer;
   Resuource _reso;
+  bool _showAllTasks = false;
   _AllTasksState(this.isEngineer, this._reso) {
     initBack();
     _collectPosition();
   }
+  void changeShowAllTasks() {
+    _showAllTasks = !_showAllTasks;
+    print("30. all_tasks -> _showAllTasks : $_showAllTasks");
+  }
 
   final List<TaskUI> tasks = [
-    // TaskUI(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
-    // TaskUI(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
-    // TaskUI(
-    //     2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
+    TaskUI(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
+    TaskUI(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
+    TaskUI(
+        2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
   ];
   void addNewTask(
       bool canSwap, String time, String whatDo, String whatSecondDo) {
@@ -100,39 +105,43 @@ class _AllTasksState extends State<AllTasks> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           isEngineer ? NewTaskMenu(addNewTask) : TaskNowWorker(),
           TaskList(tasks, deleteTask, true),
-          OutlinedButton(
-            onPressed: () {},
-            child: Container(
-              width: 150,
-              height: 50,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Все задачи",
-                    overflow: TextOverflow.fade,
-                    softWrap: true,
-                    maxLines: 2,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
+          tasks.length > 3
+              ? OutlinedButton(
+                  onPressed: changeShowAllTasks,
+                  child: Container(
+                    width: 150,
+                    height: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Все задачи",
+                          overflow: TextOverflow.fade,
+                          softWrap: true,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward_ios_outlined,
+                            color: Colors.white),
+                      ],
                     ),
                   ),
-                  Icon(Icons.arrow_forward_ios_outlined, color: Colors.white),
-                ],
-              ),
-            ),
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.0),
-              )),
-              backgroundColor: MaterialStateProperty.all(Colors.blue),
-            ),
-          ),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    )),
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

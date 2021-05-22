@@ -101,9 +101,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                   newTask(
                       true,
                       DateFormat.Hm().format(DateTime.now()).toString(),
-                      _controller.text +
-                          " " +
-                          DateFormat.Hm().format(DateTime.now()).toString(),
+                      _controller.text,
                       "Точка B7");
                 },
                 child: const Text('Создать'),

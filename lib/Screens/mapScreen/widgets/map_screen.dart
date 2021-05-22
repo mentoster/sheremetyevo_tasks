@@ -29,7 +29,13 @@ class _MapScreenState extends State<MapScreen> {
             Positioned(
                 top: 153,
                 left: 40,
-                child: Transform.scale(scale: 0.09, child: WayButton()))
+                child: Transform.scale(scale: 0.09, child: WayButton())),
+            Positioned(
+                top: 140,
+                left: 250,
+                child: Transform.scale(
+                    scale: 0.3,
+                    child: Icon(Icons.person_pin, color: Colors.red[900]))),
           ]),
         ),
       ),
@@ -47,7 +53,7 @@ class WayButton extends StatelessWidget {
     if (states.any(interactiveStates.contains)) {
       return const Color(0x3D4400FF);
     }
-    return const Color(0xC4B90000);
+    return const Color(0x00B90000);
   }
 
   @override

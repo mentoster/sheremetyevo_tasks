@@ -6,7 +6,7 @@ import 'package:sheremetyevo_tasks/Models/coordservice.pbenum.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/choose_character.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/main_map.dart';
-import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/getCoordinates.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/get_coordinates.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

@@ -13,7 +13,7 @@ class TaskList extends StatelessWidget {
         child: ListView.builder(
             shrinkWrap: true,
             itemCount: showTop
-                ? (_tasks.length < 5 ? _tasks.length : 5)
+                ? (_tasks.length < 4 ? _tasks.length : 4)
                 : _tasks.length,
             itemBuilder: (bctx, index) {
               return _tasks[index];
