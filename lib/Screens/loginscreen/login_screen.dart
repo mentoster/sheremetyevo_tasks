@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
     print("login_screen -> _isEngineer : $_isEngineer");
   }
 
-  void _chooseClass(String type, Resuource _reso) {
+  void _chooseType(String type, Resuource _reso) {
     _type = type;
     setState(() {
       titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   late LocationData posLast;
   void _collectPosition() async {
-    if (_page == 2 && _canUseCoords) {
+    if (_page == 1 && _canUseCoords) {
       var pos = await _getCoords.getPosition();
       if (posLast != pos) {
         _sendPosition(pos);
@@ -101,8 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      ChooseCharacter(_nextPage, _changeCharacter),
-      ChooseType(_nextPage, _chooseClass),
+      ChooseCharacter(_nextPage, _chooseType, _changeCharacter),
       WayMap(_isEngineer),
     ];
     return Scaffold(
