@@ -46,9 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _chooseClass(String type, Resuource _reso) {
-    // _reso;
-    // InitReq
-    initBack();
+    initBack(_reso);
     _type = type;
     setState(() {
       titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
@@ -57,10 +55,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   late CoordsServiceClient _coordsServiceClient;
-  void initBack() {
+  void initBack(Resuource _reso) {
     _coordsServiceClient = CoordsServiceClient(ClientChannel('localhost',
         port: 8080,
         options: ChannelOptions(credentials: ChannelCredentials.insecure())));
+    // _coordsServiceClient.initApp(_reso);
   }
 
   @override
