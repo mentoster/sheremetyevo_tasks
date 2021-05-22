@@ -8,7 +8,7 @@ class ChooseType extends StatelessWidget {
   void _chooseClass(String type) {
     nextPage();
 
-    Resuource res;
+    Resuource res = Resuource.HUMAN;
     switch (type) {
       case "Человек":
         res = Resuource.HUMAN;
@@ -29,8 +29,10 @@ class ChooseType extends StatelessWidget {
         res = Resuource.PLOW_AND_BRUSH_MACHINE_REG;
         break;
       default:
+        res = Resuource.HUMAN;
+        break;
     }
-    changeClass(type);
+    changeClass(type, res);
   }
 
   @override
