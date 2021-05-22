@@ -46,8 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
     print("login_screen -> _isEngineer : $_isEngineer");
   }
 
-  late Resuource reso;
+  late Resuource _reso = Resuource.HUMAN;
   void _chooseType(String type, Resuource reso) {
+    _reso = reso;
     _type = type;
     setState(() {
       titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       ChooseCharacter(_nextPage, _chooseType, _changeCharacter),
-      WayMap(_isEngineer, reso),
+      WayMap(_isEngineer, _reso),
     ];
     return Scaffold(
         appBar: AppBar(
