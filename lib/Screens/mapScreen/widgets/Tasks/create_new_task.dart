@@ -29,7 +29,7 @@ class _NewTaskMenuState extends State<NewTaskMenu> {
           style: TextStyle(fontSize: 25),
         ),
         _isWantToCreate
-            ? CreateTaskWidget(newTask, changeCreateBool, "Привет")
+            ? CreateTaskWidget(newTask, changeCreateBool, "")
             : Container(
                 height: 35,
                 padding: EdgeInsets.only(right: 15),

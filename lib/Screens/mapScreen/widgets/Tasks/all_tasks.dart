@@ -26,16 +26,17 @@ class _AllTasksState extends State<AllTasks> {
   }
 
   final List<TaskUI> tasks = [
-    TaskUI(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
-    TaskUI(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
-    TaskUI(
-        2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
+    // TaskUI(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
+    // TaskUI(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
+    // TaskUI(
+    //     2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
   ];
   void addNewTask(
       bool canSwap, String time, String whatDo, String whatSecondDo) {
+    print("test");
     final tsk =
         TaskUI(tasks.length, canSwap, time, whatDo, whatSecondDo, deleteTask);
-
+    _sendTask(tsk.whatDo);
     setState(() {
       tasks.add(tsk);
     });
@@ -65,7 +66,7 @@ class _AllTasksState extends State<AllTasks> {
     }
   }
 
-  late LocationData posLast;
+  late Coords posLast = Coords(long: 0, lat: 0);
   void _collectPosition() async {
     if (_canUseCoords) {
       var pos = await _getCoords.getPosition();
@@ -78,14 +79,21 @@ class _AllTasksState extends State<AllTasks> {
   }
 
   void _sendPosition(LocationData pos) {
-    posLast = pos;
+    posLast.long = pos.longitude!;
+    posLast.lat = pos.latitude!;
     print("login_screen -> pos.latitude : ${pos.latitude}");
-    print(" login_screen -> pos.altitude : ${pos.altitude}");
+    print(" login_screen -> pos.altitude : ${pos.longitude}");
     _coordsServiceClient.writeCoords(WriteCoordsReq(
       id: _id.id,
       lat: pos.latitude,
       long: pos.altitude,
     ));
+  }
+
+  void _sendTask(String msg) {
+    print("93. all_tasks -> msg : $msg");
+    _coordsServiceClient.openTask(Task(
+        on: Coords(lat: posLast.lat, long: posLast.long), operationName: msg));
   }
 
   @override
@@ -94,7 +102,37 @@ class _AllTasksState extends State<AllTasks> {
       child: Column(
         children: [
           isEngineer ? NewTaskMenu(addNewTask) : TaskNowWorker(),
-          TaskList(tasks, deleteTask)
+          TaskList(tasks, deleteTask, true),
+          OutlinedButton(
+            onPressed: () {},
+            child: Container(
+              width: 150,
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Все задачи",
+                    overflow: TextOverflow.fade,
+                    softWrap: true,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Icon(Icons.arrow_forward_ios_outlined, color: Colors.white),
+                ],
+              ),
+            ),
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              )),
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
+            ),
+          ),
         ],
       ),
     );

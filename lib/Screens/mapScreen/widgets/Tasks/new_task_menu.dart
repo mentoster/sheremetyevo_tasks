@@ -98,8 +98,13 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
               child: OutlinedButton(
                 onPressed: () {
                   _changeCreateBool();
-                  newTask(true, DateFormat.Hm(DateTime.now()).toString(),
-                      _controller.text, "Точка B7");
+                  newTask(
+                      true,
+                      DateFormat.Hm().format(DateTime.now()).toString(),
+                      _controller.text +
+                          " " +
+                          DateFormat.Hm().format(DateTime.now()).toString(),
+                      "Точка B7");
                 },
                 child: const Text('Создать'),
                 style: ButtonStyle(
