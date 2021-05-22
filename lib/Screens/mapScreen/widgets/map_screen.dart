@@ -8,6 +8,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   double scale = 0.1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,15 +18,17 @@ class _MapScreenState extends State<MapScreen> {
       child: Center(
         child: Stack(children: [
           Image(image: AssetImage("assets/images/shema1opt.jpg")),
-          Transform.scale(
-            scale: scale,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                WayButton(),
-                WayButton(),
-              ],
+          Container(
+            padding: EdgeInsets.only(top: 105, right: 50),
+            child: Transform.scale(
+              scale: 0.09,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  WayButton(),
+                ],
+              ),
             ),
           ),
         ]),
@@ -54,7 +57,7 @@ class WayButton extends StatelessWidget {
     return ElevatedButton(
       style: style,
       onPressed: () {},
-      child: Container(width: 1, height: 1),
+      child: Container(width: 420, height: 1),
     );
   }
 }
