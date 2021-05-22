@@ -51,7 +51,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Text("Перекрывает путь самолёту?"),
+                child: Text("Перекрывает путь?"),
               ),
               Checkbox(
                 checkColor: Colors.white,
