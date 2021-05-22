@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/Task_now_worker.dart';
@@ -20,10 +23,12 @@ class AllTasks extends StatefulWidget {
 class _AllTasksState extends State<AllTasks> {
   final bool isEngineer;
   Resuource _reso;
+  bool getList = true;
   bool _showAllTasks = false;
   _AllTasksState(this.isEngineer, this._reso) {
     initBack();
     _collectPosition();
+    if (!isEngineer) _voidGetTasks();
   }
   void changeShowAllTasks() {
     _showAllTasks = !_showAllTasks;
@@ -31,17 +36,22 @@ class _AllTasksState extends State<AllTasks> {
   }
 
   final List<TaskUI> tasks = [
-    TaskUI(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
-    TaskUI(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
-    TaskUI(
-        2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
+    // TaskUI(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
+    // TaskUI(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
+    // TaskUI(
+    //     2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
   ];
+
   void addNewTask(
       bool canSwap, String time, String whatDo, String whatSecondDo) {
-    print("test");
-    final tsk =
-        TaskUI(tasks.length, canSwap, time, whatDo, whatSecondDo, deleteTask);
-    _sendTask(tsk.whatDo);
+    final tsk = TaskUI(
+        tasks.length,
+        canSwap,
+        DateFormat.Hm().format(DateTime.now()).toString(),
+        whatDo,
+        whatSecondDo,
+        deleteTask);
+    if (getList) _sendTask(tsk.whatDo);
     setState(() {
       tasks.add(tsk);
     });
@@ -99,6 +109,26 @@ class _AllTasksState extends State<AllTasks> {
     print("93. all_tasks -> msg : $msg");
     _coordsServiceClient.openTask(Task(
         on: Coords(lat: posLast.lat, long: posLast.long), operationName: msg));
+  }
+
+  Future<void> _voidGetTasks() async {
+    // final str = _coordsServiceClient
+    //     .listenCommands(Unit(id: "1suBeuep3uySyjYV746IOYw9rjD"));
+    // print("110. all_tasks -> str : $str");
+    // str.listen((data) {
+    //   print("DataReceived: " + data.toString());
+    // }, onDone: () {
+    //   print("Task Done");
+    // }, onError: (error) {
+    //   print("Some Error");
+    // });
+    print("listen");
+    getList = false;
+    await for (var feature in _coordsServiceClient
+        .listenCommands(Unit(id: "1suAwDZ3WyaZsHbgZmabTB6gxa8"))) {
+      addNewTask(true, "", feature.operationName, "");
+    }
+    getList = true;
   }
 
   @override
