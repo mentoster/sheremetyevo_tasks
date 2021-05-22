@@ -13,10 +13,10 @@ class WayMap extends StatelessWidget {
     topRight: Radius.circular(24.0),
   );
   Widget body() {
-    if (Platform.isAndroid || Platform.isWindows || Platform.isIOS)
-      return MapScreen();
-    else
-      return Center(child: Text("На этом устройстве \nотсутсвуют датчики gps"));
+    // if (Platform.isAndroid || Platform.isWindows || Platform.isIOS)
+    //   return MapScreen();
+    // else
+    return Center(child: Text("На этом устройстве \nотсутсвуют датчики gps"));
   }
 
   @override
