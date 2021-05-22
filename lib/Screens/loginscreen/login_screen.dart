@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:location/location.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbenum.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/chooseType.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/choose_character.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/main_map.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/getCoordinates.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -46,26 +48,47 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _chooseClass(String type, Resuource _reso) {
-    initBack(_reso);
     _type = type;
     setState(() {
       titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
     });
+    initBack(_reso);
+    _sendPosition();
     print("login_screen -> _type : $_type");
   }
 
   late CoordsServiceClient _coordsServiceClient;
+  late ID _id;
+  GetCoords _getCoords = new GetCoords();
+  bool _canUseCoords = false;
+
   void initBack(Resuource _reso) async {
     _coordsServiceClient = CoordsServiceClient(ClientChannel('82.146.61.131',
         port: 8081,
         options: ChannelOptions(credentials: ChannelCredentials.insecure())));
-    var id = await _coordsServiceClient.initApp(InitReq(type: _reso));
-    print("63. login_screen -> id : $id");
-    _coordsServiceClient.writeCoords(WriteCoordsReq(
-      id: id.id,
-      lat: 64.41415,
-      long: 30.51252,
-    ));
+    _id = await _coordsServiceClient.initApp(InitReq(type: _reso));
+    print("login_screen -> id : $_id");
+    _canUseCoords = await _getCoords.canUse();
+    print("login_screen -> _canUseCoords : $_canUseCoords");
+  }
+
+  late LocationData posLast;
+  void _sendPosition() async {
+    if (_page == 2 && _canUseCoords) {
+      var pos = await _getCoords.getPosition();
+      if (posLast != pos) {
+        posLast = pos;
+        print("login_screen -> pos.latitude : ${pos.latitude}");
+        print(" login_screen -> pos.altitude : ${pos.altitude}");
+        _coordsServiceClient.writeCoords(WriteCoordsReq(
+          id: _id.id,
+          lat: posLast.latitude,
+          long: posLast.altitude,
+        ));
+      }
+    }
+    await Future.delayed(const Duration(seconds: 1), () {});
+    _sendPosition();
   }
 
   @override

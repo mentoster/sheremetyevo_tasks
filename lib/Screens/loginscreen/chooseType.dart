@@ -121,7 +121,7 @@ class TypeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Container(
         width: double.infinity,
         height: 40,
@@ -133,7 +133,13 @@ class TypeButton extends StatelessWidget {
               icon,
               Text(
                 buttonText,
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                overflow: TextOverflow.fade,
+                softWrap: true,
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),
