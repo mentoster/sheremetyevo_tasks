@@ -3,7 +3,7 @@ import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/task.dart';
 
 class TaskList extends StatelessWidget {
   ScrollController scrollController = ScrollController();
-  final List<Task> _tasks;
+  final List<TaskUI> _tasks;
   final Function deleteTask;
   TaskList(this._tasks, this.deleteTask);
   @override

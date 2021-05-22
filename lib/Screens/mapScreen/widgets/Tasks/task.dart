@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class Task extends StatelessWidget {
+class TaskUI extends StatelessWidget {
   final int id;
   final bool canSwap;
   final String time;
   final String whatDo;
   final String whatSecondDo;
   Function deleteElement;
-  Task(
+  TaskUI(
     this.id,
     this.canSwap,
     this.time,

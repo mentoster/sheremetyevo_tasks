@@ -25,15 +25,16 @@ class _AllTasksState extends State<AllTasks> {
     _collectPosition();
   }
 
-  final List<Task> tasks = [
-    Task(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
-    Task(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
-    Task(2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
+  final List<TaskUI> tasks = [
+    TaskUI(0, true, "12:10", "Убрать снег", "Первый участок ИВПП-II", () => {}),
+    TaskUI(1, true, "12:40", "Убрать снег", "Первый участок РД-1", () => {}),
+    TaskUI(
+        2, true, "14:50", "Очистить дорогу", "Первый участок РД-1", () => {}),
   ];
   void addNewTask(
       bool canSwap, String time, String whatDo, String whatSecondDo) {
     final tsk =
-        Task(tasks.length, canSwap, time, whatDo, whatSecondDo, deleteTask);
+        TaskUI(tasks.length, canSwap, time, whatDo, whatSecondDo, deleteTask);
 
     setState(() {
       tasks.add(tsk);
