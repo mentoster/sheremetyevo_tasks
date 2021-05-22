@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _coordsServiceClient = CoordsServiceClient(ClientChannel('localhost',
         port: 8080,
         options: ChannelOptions(credentials: ChannelCredentials.insecure())));
-    // _coordsServiceClient.initApp(_reso);
+    _coordsServiceClient.initApp(InitReq(type: _reso));
   }
 
   @override
