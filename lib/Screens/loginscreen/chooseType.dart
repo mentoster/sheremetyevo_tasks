@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbenum.dart';
 
@@ -51,12 +53,56 @@ class ChooseType extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TypeButton("Человек", _chooseClass),
-                TypeButton("грузчик/самосвал", _chooseClass),
-                TypeButton("экскаватор", _chooseClass),
-                TypeButton("роторный погрузчик", _chooseClass),
-                TypeButton("плужно-щеточная машина", _chooseClass),
-                TypeButton("плужно-щеточная машина с реагентом.", _chooseClass),
+                TypeButton(
+                  "Человек",
+                  _chooseClass,
+                  ImageIcon(
+                    AssetImage("assets/images/icons/Inzh.png"),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                ),
+                TypeButton(
+                  "грузчик/самосвал",
+                  _chooseClass,
+                  ImageIcon(
+                    AssetImage("assets/images/icons/Gruzovik.png"),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                ),
+                TypeButton(
+                  "экскаватор",
+                  _chooseClass,
+                  ImageIcon(
+                    AssetImage("assets/images/icons/Eskaavator.png"),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                ),
+                TypeButton(
+                  "роторный погрузчик",
+                  _chooseClass,
+                  ImageIcon(
+                    AssetImage("assets/images/icons/rotorny_pogruzchik.png"),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                ),
+                TypeButton(
+                  "плужно-щеточная машина",
+                  _chooseClass,
+                  ImageIcon(
+                    AssetImage(
+                        "assets/images/icons/pluzhno-schetochnaya_mashina.png"),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                ),
+                TypeButton(
+                  "плужно-щеточная машина с реагентом.",
+                  _chooseClass,
+                  ImageIcon(
+                    AssetImage(
+                        "assets/images/icons/pluzhno-schetochnaya_mashina.png"),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                ),
               ],
             ),
           ),
@@ -69,8 +115,9 @@ class ChooseType extends StatelessWidget {
 class TypeButton extends StatelessWidget {
   final String buttonText;
   final Function changeClass;
+  final ImageIcon icon;
   // final Image
-  TypeButton(this.buttonText, this.changeClass);
+  TypeButton(this.buttonText, this.changeClass, this.icon);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -80,9 +127,15 @@ class TypeButton extends StatelessWidget {
         height: 40,
         child: OutlinedButton(
           onPressed: () => changeClass(buttonText),
-          child: Text(
-            buttonText,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              icon,
+              Text(
+                buttonText,
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+            ],
           ),
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(

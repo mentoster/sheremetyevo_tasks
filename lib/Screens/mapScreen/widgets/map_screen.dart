@@ -6,6 +6,7 @@ class MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: PhotoView(
+      backgroundDecoration: BoxDecoration(color: Colors.white),
       imageProvider: AssetImage("assets/images/shema1opt.jpg"),
     ));
   }

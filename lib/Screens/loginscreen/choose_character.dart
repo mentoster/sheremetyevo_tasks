@@ -28,9 +28,18 @@ class ChooseCharacter extends StatelessWidget {
                       nextPage();
                       changeCharacter(true);
                     },
-                    child: const Text(
-                      'Инженер',
-                      style: TextStyle(fontSize: 38, color: Colors.white),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ImageIcon(
+                          AssetImage("assets/images/icons/Inzh.png"),
+                          color: Color(0xFFFFFFFF),
+                        ),
+                        const Text(
+                          'Инженер',
+                          style: TextStyle(fontSize: 38, color: Colors.white),
+                        ),
+                      ],
                     ),
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -51,9 +60,18 @@ class ChooseCharacter extends StatelessWidget {
                       nextPage();
                       changeCharacter(false);
                     },
-                    child: const Text(
-                      'Работник',
-                      style: TextStyle(fontSize: 38, color: Colors.white),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ImageIcon(
+                          AssetImage("assets/images/icons/Inzh.png"),
+                          color: Color(0xFFFFFFFF),
+                        ),
+                        const Text(
+                          'Работник',
+                          style: TextStyle(fontSize: 38, color: Colors.white),
+                        ),
+                      ],
                     ),
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
