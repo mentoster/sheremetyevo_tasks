@@ -36,7 +36,7 @@ class _NewTaskMenuState extends State<NewTaskMenu> {
 
   @override
   Widget build(BuildContext context) {
-    update();
+    // update();
     return Column(
       children: [
         Text(
