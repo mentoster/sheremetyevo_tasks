@@ -37,6 +37,7 @@ dependencies:
   nice_button: ^0.1.7
   protobuf: ^2.0.0
   grpc: ^3.0.0
+  geolocation: ^1.1.2
 
 dev_dependencies:
   flutter_test:
