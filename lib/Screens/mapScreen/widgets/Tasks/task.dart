@@ -1,57 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:liquid_progress_indicator_ns/liquid_progress_indicator.dart';
-import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/new_task.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class Task extends StatelessWidget {
-  const Task({
-    Key? key,
-  }) : super(key: key);
+  final bool canSwap;
+  final String time;
+  final String whatDo;
+  final String whatSecondDo;
+  Task(this.canSwap, this.time, this.whatDo, this.whatSecondDo);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: canSwap
+          ? Slidable(
+              actionPane: SlidableDrawerActionPane(),
+              actionExtentRatio: 0.25,
+              child: Container(
+                width: double.infinity,
+                child: InsideTask(time, whatDo, whatSecondDo),
+              ),
+              actions: <Widget>[
+                IconSlideAction(
+                  caption: 'Отказаться',
+                  color: Colors.red,
+                  icon: Icons.delete,
+                  onTap: () => Text('Share'),
+                ),
+              ],
+              secondaryActions: <Widget>[
+                IconSlideAction(
+                  caption: 'Начать',
+                  color: Colors.green,
+                  icon: Icons.check,
+                  onTap: () => Text('Share'),
+                ),
+              ],
+            )
+          : InsideTask(time, whatDo, whatSecondDo),
+    );
+  }
+}
+
+class InsideTask extends StatelessWidget {
+  final String time;
+  final String whatDo;
+  final String whatSecondDo;
+  const InsideTask(this.time, this.whatDo, this.whatSecondDo);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          height: 50,
-          child: LiquidLinearProgressIndicator(
-            value: 0.5,
-            valueColor: AlwaysStoppedAnimation(Theme.of(context).accentColor),
-            backgroundColor: Theme.of(context).backgroundColor,
-            borderColor: Theme.of(context).accentColor,
-            borderWidth: 3.0,
-            borderRadius: 15.0,
-            direction: Axis.horizontal,
-            center: Text("Осталось 50 минут"),
-          ),
+    return Container(
+      color: Colors.white,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.indigoAccent,
+          child: Icon(Icons.flight_takeoff),
+          foregroundColor: Colors.white,
         ),
-        Divider(),
-        InsideNewTask(),
-        Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 35,
-                padding: EdgeInsets.only(right: 15),
-                child: OutlinedButton(
-                  onPressed: () {
-                    print('Received click');
-                  },
-                  child: const Text('Выполнено'),
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                    )),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
-      ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Убрать снег.'),
+            Text(
+              'До 18:30',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        subtitle: Text('Убрать снег на 7 линии перед взлетом самолета.'),
+      ),
     );
   }
 }
