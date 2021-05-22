@@ -19,6 +19,7 @@ class ChooseType extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 108, color: Colors.black)),
           ),
+          Divider(),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,11 +48,22 @@ class TypeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: OutlinedButton(
-        onPressed: () => changeClass(buttonText),
-        child: Text(buttonText),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.white),
+      child: Container(
+        width: double.infinity,
+        height: 40,
+        child: OutlinedButton(
+          onPressed: () => changeClass(buttonText),
+          child: Text(
+            buttonText,
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            )),
+            backgroundColor: MaterialStateProperty.all(Colors.blue),
+          ),
         ),
       ),
     );
