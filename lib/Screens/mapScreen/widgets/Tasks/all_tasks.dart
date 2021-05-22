@@ -9,23 +9,27 @@ import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/Task_now_worker.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/create_new_task.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/get_coordinates.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/map_selected_text.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/task.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/tasks_list.dart';
 
 class AllTasks extends StatefulWidget {
   final bool isEngineer;
+  SelectedText _selectedText;
   Resuource reso;
-  AllTasks(this.isEngineer, this.reso);
+  AllTasks(this.isEngineer, this.reso, this._selectedText);
   @override
-  _AllTasksState createState() => _AllTasksState(isEngineer, reso);
+  _AllTasksState createState() =>
+      _AllTasksState(isEngineer, reso, _selectedText);
 }
 
 class _AllTasksState extends State<AllTasks> {
   final bool isEngineer;
+  SelectedText _selectedText;
   Resuource _reso;
   bool getList = true;
   bool _showAllTasks = false;
-  _AllTasksState(this.isEngineer, this._reso) {
+  _AllTasksState(this.isEngineer, this._reso, this._selectedText) {
     initBack();
     _collectPosition();
     if (!isEngineer) _voidGetTasks();
@@ -137,7 +141,7 @@ class _AllTasksState extends State<AllTasks> {
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          isEngineer ? NewTaskMenu(addNewTask) : TaskNowWorker(),
+          isEngineer ? NewTaskMenu(addNewTask,_selectedText) : TaskNowWorker(),
           TaskList(tasks, deleteTask, true),
           tasks.length > 3
               ? OutlinedButton(
