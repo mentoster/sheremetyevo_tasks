@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
-class MapScreen extends StatelessWidget {
+class MapScreen extends StatefulWidget {
+  @override
+  _MapScreenState createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  double scale = 0.1;
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style = ElevatedButton.styleFrom();
     return Container(
         child: InteractiveViewer(
       maxScale: 15,
@@ -12,24 +17,44 @@ class MapScreen extends StatelessWidget {
       child: Center(
         child: Stack(children: [
           Image(image: AssetImage("assets/images/shema1opt.jpg")),
-          Padding(
-            padding: const EdgeInsets.only(left: 200.0, top: 100),
+          Transform.scale(
+            scale: scale,
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                FractionallySizedBox(
-                  widthFactor: 1,
-                  child: ElevatedButton(
-                    // style: style,
-                    onPressed: () {},
-                    child: Container(width: 1, height: 1),
-                  ),
-                ),
+                WayButton(),
+                WayButton(),
               ],
             ),
           ),
         ]),
       ),
     ));
+  }
+}
+
+class WayButton extends StatelessWidget {
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return const Color(0x1C4400FF);
+    }
+    return const Color(0x05D4DEFF);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ButtonStyle style = ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith(getColor));
+    return ElevatedButton(
+      style: style,
+      onPressed: () {},
+      child: Container(width: 1, height: 1),
+    );
   }
 }

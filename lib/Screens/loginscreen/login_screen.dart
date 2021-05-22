@@ -55,11 +55,17 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   late CoordsServiceClient _coordsServiceClient;
-  void initBack(Resuource _reso) {
-    _coordsServiceClient = CoordsServiceClient(ClientChannel('localhost',
-        port: 8080,
+  void initBack(Resuource _reso) async {
+    _coordsServiceClient = CoordsServiceClient(ClientChannel('82.146.61.131',
+        port: 8081,
         options: ChannelOptions(credentials: ChannelCredentials.insecure())));
-    _coordsServiceClient.initApp(InitReq(type: _reso));
+    var id = await _coordsServiceClient.initApp(InitReq(type: _reso));
+    print("63. login_screen -> id : $id");
+    _coordsServiceClient.writeCoords(WriteCoordsReq(
+      id: id.id,
+      lat: 64.41415,
+      long: 30.51252,
+    ));
   }
 
   @override
