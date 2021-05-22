@@ -46,62 +46,20 @@ class _LoginScreenState extends State<LoginScreen> {
     print("login_screen -> _isEngineer : $_isEngineer");
   }
 
-  void _chooseType(String type, Resuource _reso) {
+  late Resuource reso;
+  void _chooseType(String type, Resuource reso) {
     _type = type;
     setState(() {
       titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
     });
-    initBack(_reso);
-    _collectPosition();
     print("login_screen -> _type : $_type");
-  }
-
-  late CoordsServiceClient _coordsServiceClient;
-  late ID _id;
-  GetCoords _getCoords = new GetCoords();
-  bool _canUseCoords = false;
-
-  void initBack(Resuource _reso) async {
-    _coordsServiceClient = CoordsServiceClient(ClientChannel('82.146.61.131',
-        port: 8081,
-        options: ChannelOptions(credentials: ChannelCredentials.insecure())));
-    _id = await _coordsServiceClient.initApp(InitReq(type: _reso));
-    print("login_screen -> id : $_id");
-    _canUseCoords = await _getCoords.canUse();
-    print("login_screen -> _canUseCoords : $_canUseCoords");
-    if (_canUseCoords) {
-      _sendPosition(await _getCoords.getPosition());
-    }
-  }
-
-  late LocationData posLast;
-  void _collectPosition() async {
-    if (_page == 1 && _canUseCoords) {
-      var pos = await _getCoords.getPosition();
-      if (posLast != pos) {
-        _sendPosition(pos);
-      }
-    }
-    await Future.delayed(const Duration(seconds: 1), () {});
-    _collectPosition();
-  }
-
-  void _sendPosition(LocationData pos) {
-    posLast = pos;
-    print("login_screen -> pos.latitude : ${pos.latitude}");
-    print(" login_screen -> pos.altitude : ${pos.altitude}");
-    _coordsServiceClient.writeCoords(WriteCoordsReq(
-      id: _id.id,
-      lat: pos.latitude,
-      long: pos.altitude,
-    ));
   }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
       ChooseCharacter(_nextPage, _chooseType, _changeCharacter),
-      WayMap(_isEngineer),
+      WayMap(_isEngineer, reso),
     ];
     return Scaffold(
         appBar: AppBar(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
+import 'package:intl/intl.dart';
 
 class CreateTaskWidget extends StatefulWidget {
+  Function newTask;
   final textToField;
-  Function _changeCreateBool;
-  CreateTaskWidget(this._changeCreateBool, this.textToField);
+  final Function _changeCreateBool;
+  CreateTaskWidget(this.newTask, this._changeCreateBool, this.textToField);
   final _controller = TextEditingController();
   void putText() {
     _controller.text = textToField;
@@ -13,18 +15,19 @@ class CreateTaskWidget extends StatefulWidget {
   @override
   _CreateTaskWidgetState createState() {
     putText();
-    return _CreateTaskWidgetState(_changeCreateBool, _controller);
+    return _CreateTaskWidgetState(newTask, _changeCreateBool, _controller);
   }
 }
 
 class _CreateTaskWidgetState extends State<CreateTaskWidget> {
   final TextEditingController _controller;
-
+  final Function newTask;
   bool _isOnWay = false;
   Function _changeCreateBool;
   late Operaions operaion;
 
-  _CreateTaskWidgetState(this._changeCreateBool, this._controller);
+  _CreateTaskWidgetState(
+      this.newTask, this._changeCreateBool, this._controller);
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
@@ -95,7 +98,8 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
               child: OutlinedButton(
                 onPressed: () {
                   _changeCreateBool();
-                  _controller.text;
+                  newTask(true, DateFormat.Hm(DateTime.now()).toString(),
+                      _controller.text, "Точка B7");
                 },
                 child: const Text('Создать'),
                 style: ButtonStyle(

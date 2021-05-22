@@ -3,17 +3,17 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/new_task_menu.dart';
 
 class NewTaskMenu extends StatefulWidget {
-  const NewTaskMenu({
-    Key? key,
-  }) : super(key: key);
-
+  Function newTask;
+  NewTaskMenu(this.newTask);
   @override
-  _NewTaskMenuState createState() => _NewTaskMenuState();
+  _NewTaskMenuState createState() => _NewTaskMenuState(newTask);
 }
 
 class _NewTaskMenuState extends State<NewTaskMenu> {
   bool _isWantToCreate = false;
-  void ChangeCreateBool() {
+  final Function newTask;
+  _NewTaskMenuState(this.newTask);
+  void changeCreateBool() {
     setState(() {
       _isWantToCreate = !_isWantToCreate;
     });
@@ -29,12 +29,12 @@ class _NewTaskMenuState extends State<NewTaskMenu> {
           style: TextStyle(fontSize: 25),
         ),
         _isWantToCreate
-            ? CreateTaskWidget(ChangeCreateBool, "Привет")
+            ? CreateTaskWidget(newTask, changeCreateBool, "Привет")
             : Container(
                 height: 35,
                 padding: EdgeInsets.only(right: 15),
                 child: OutlinedButton(
-                  onPressed: ChangeCreateBool,
+                  onPressed: changeCreateBool,
                   child: const Text('Создать задачу'),
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(

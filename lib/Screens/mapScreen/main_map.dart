@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sheremetyevo_tasks/Models/coordservice.pbenum.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/all_tasks.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/map_screen.dart';
-import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/opened_card.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'dart:io' show Platform;
 
 class WayMap extends StatelessWidget {
   bool _isEngineer;
-
-
-  WayMap(this._isEngineer);
+  Resuource reso;
+  WayMap(this._isEngineer, this.reso);
   final BorderRadiusGeometry radius = BorderRadius.only(
     topLeft: Radius.circular(24.0),
     topRight: Radius.circular(24.0),
@@ -26,7 +26,7 @@ class WayMap extends StatelessWidget {
       parallaxEnabled: true,
       backdropEnabled: true,
       panel: Center(
-        child:  BottomMenu(_isEngineer),
+        child: AllTasks(_isEngineer, reso),
       ),
       body: body(),
       borderRadius: radius,

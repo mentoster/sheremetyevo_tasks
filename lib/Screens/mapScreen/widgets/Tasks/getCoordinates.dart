@@ -33,6 +33,4 @@ class GetCoords {
     _locationData = await location.getLocation();
     return _locationData;
   }
-
-  void init() async {}
 }
