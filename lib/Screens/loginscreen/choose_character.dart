@@ -97,7 +97,7 @@ class _ChooseCharacterState extends State<ChooseCharacter> {
         Divider(),
         Center(
             child: Text(
-          "Расса",
+          "Раса",
           style: TextStyle(
             fontSize: 20,
             color: Colors.black,

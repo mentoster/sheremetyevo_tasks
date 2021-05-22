@@ -11,9 +11,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    print(width);
     return InteractiveViewer(
       maxScale: 15,
       minScale: 1,
@@ -48,9 +45,9 @@ class WayButton extends StatelessWidget {
       MaterialState.focused,
     };
     if (states.any(interactiveStates.contains)) {
-      return const Color(0x1C4400FF);
+      return const Color(0x3D4400FF);
     }
-    return const Color(0xFFFF0000);
+    return const Color(0xC4B90000);
   }
 
   @override
