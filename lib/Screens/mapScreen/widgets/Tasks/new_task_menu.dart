@@ -13,6 +13,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
   bool _isOnWay = false;
   Function _changeCreateBool;
   late Operaions operaion;
+  
   _CreateTaskWidgetState(this._changeCreateBool);
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{

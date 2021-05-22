@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbenum.dart';
 import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/chooseType.dart';
@@ -56,7 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   late CoordsServiceClient _coordsServiceClient;
   void initBack() {
-    // _coordsServiceClient._coordsServiceClient.initApp(request);
+    _coordsServiceClient = CoordsServiceClient(ClientChannel('localhost',
+        port: 8080,
+        options: ChannelOptions(credentials: ChannelCredentials.insecure())));
   }
 
   @override
