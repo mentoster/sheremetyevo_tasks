@@ -69,6 +69,7 @@ class ChooseType extends StatelessWidget {
 class TypeButton extends StatelessWidget {
   final String buttonText;
   final Function changeClass;
+  // final Image
   TypeButton(this.buttonText, this.changeClass);
   @override
   Widget build(BuildContext context) {
