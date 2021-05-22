@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sheremetyevo_tasks/Models/coordservice.pbenum.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/chooseType.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/choose_character.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/main_map.dart';
@@ -14,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _type = "null";
   bool _loadApp = false;
   String titleText = 'Выберите персонажа';
+  late Resuource _resuource;
   void _backPage() {
     if (_page > 0)
       setState(() {
@@ -40,7 +42,8 @@ class _LoginScreenState extends State<LoginScreen> {
     print("login_screen -> _isEngineer : $_isEngineer");
   }
 
-  void _chooseClass(String type) {
+  void _chooseClass(String type,Resuource _reso) {
+    _resuource = Resuource.ECAVATOR;
     _type = type;
     setState(() {
       titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
