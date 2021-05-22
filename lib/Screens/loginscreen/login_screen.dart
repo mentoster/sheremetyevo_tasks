@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       titleText = (_isEngineer ? "Инженер" : "Работник") + ", класс $type.";
     });
     initBack(_reso);
-    _sendPosition();
+    _collectPosition();
     print("login_screen -> _type : $_type");
   }
 
@@ -70,25 +70,32 @@ class _LoginScreenState extends State<LoginScreen> {
     print("login_screen -> id : $_id");
     _canUseCoords = await _getCoords.canUse();
     print("login_screen -> _canUseCoords : $_canUseCoords");
+    if (_canUseCoords) {
+      _sendPosition(await _getCoords.getPosition());
+    }
   }
 
   late LocationData posLast;
-  void _sendPosition() async {
+  void _collectPosition() async {
     if (_page == 2 && _canUseCoords) {
       var pos = await _getCoords.getPosition();
       if (posLast != pos) {
-        posLast = pos;
-        print("login_screen -> pos.latitude : ${pos.latitude}");
-        print(" login_screen -> pos.altitude : ${pos.altitude}");
-        _coordsServiceClient.writeCoords(WriteCoordsReq(
-          id: _id.id,
-          lat: posLast.latitude,
-          long: posLast.altitude,
-        ));
+        _sendPosition(pos);
       }
     }
     await Future.delayed(const Duration(seconds: 1), () {});
-    _sendPosition();
+    _collectPosition();
+  }
+
+  void _sendPosition(LocationData pos) {
+    posLast = pos;
+    print("login_screen -> pos.latitude : ${pos.latitude}");
+    print(" login_screen -> pos.altitude : ${pos.altitude}");
+    _coordsServiceClient.writeCoords(WriteCoordsReq(
+      id: _id.id,
+      lat: pos.latitude,
+      long: pos.altitude,
+    ));
   }
 
   @override
