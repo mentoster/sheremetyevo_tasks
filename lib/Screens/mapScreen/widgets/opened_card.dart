@@ -3,30 +3,32 @@ import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/all_tasks.dar
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/create_new_task.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/Task_now_worker.dart';
 
-class WorkerBottomMenu extends StatelessWidget {
+class BottomMenu extends StatelessWidget {
+  bool isEngineer;
+  BottomMenu(this.isEngineer);
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         children: [
           TaskNowWorker(),
-          AllTasks(),
+          AllTasks(isEngineer),
         ],
       ),
     );
   }
 }
 
-class EngineerBottomMenu extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          NewTaskMenu(),
-          AllTasks(),
-        ],
-      ),
-    );
-  }
-}
+// class EngineerBottomMenu extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Column(
+//         children: [
+//           NewTaskMenu(),
+//           AllTasks(),
+//         ],
+//       ),
+//     );
+//   }
+// }

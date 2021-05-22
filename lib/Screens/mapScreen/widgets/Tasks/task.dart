@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class Task extends StatelessWidget {
+  final int id;
   final bool canSwap;
   final String time;
   final String whatDo;
   final String whatSecondDo;
-  Task(this.canSwap, this.time, this.whatDo, this.whatSecondDo);
+  Function deleteElement;
+  Task(
+    this.id,
+    this.canSwap,
+    this.time,
+    this.whatDo,
+    this.whatSecondDo,
+    this.deleteElement,
+  );
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +25,7 @@ class Task extends StatelessWidget {
               actionExtentRatio: 0.25,
               child: Container(
                 width: double.infinity,
-                child: InsideTask(time, whatDo, whatSecondDo),
+                child: InsideTask(id, time, whatDo, whatSecondDo),
               ),
               actions: <Widget>[
                 IconSlideAction(
@@ -35,16 +44,17 @@ class Task extends StatelessWidget {
                 ),
               ],
             )
-          : InsideTask(time, whatDo, whatSecondDo),
+          : InsideTask(id, time, whatDo, whatSecondDo),
     );
   }
 }
 
 class InsideTask extends StatelessWidget {
+  final int id;
   final String time;
   final String whatDo;
   final String whatSecondDo;
-  const InsideTask(this.time, this.whatDo, this.whatSecondDo);
+  const InsideTask(this.id, this.time, this.whatDo, this.whatSecondDo);
 
   @override
   Widget build(BuildContext context) {
@@ -53,20 +63,20 @@ class InsideTask extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: Colors.indigoAccent,
-          child: Icon(Icons.flight_takeoff),
+          child: Icon(Icons.beenhere_rounded),
           foregroundColor: Colors.white,
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Убрать снег.'),
+            Text(whatDo),
             Text(
-              'До 18:30',
+              time,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
         ),
-        subtitle: Text('Убрать снег на 7 линии перед взлетом самолета.'),
+        subtitle: Text(whatSecondDo),
       ),
     );
   }

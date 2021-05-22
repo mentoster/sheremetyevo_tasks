@@ -6,7 +6,7 @@ import 'dart:io' show Platform;
 
 class WayMap extends StatelessWidget {
   bool _isEngineer;
-    
+
 
   WayMap(this._isEngineer);
   final BorderRadiusGeometry radius = BorderRadius.only(
@@ -26,7 +26,7 @@ class WayMap extends StatelessWidget {
       parallaxEnabled: true,
       backdropEnabled: true,
       panel: Center(
-        child: _isEngineer ? EngineerBottomMenu() : WorkerBottomMenu(),
+        child:  BottomMenu(_isEngineer),
       ),
       body: body(),
       borderRadius: radius,
