@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sheremetyevo_tasks/Models/coordservice.pbgrpc.dart';
 
 class CreateTaskWidget extends StatefulWidget {
   Function _changeCreateBool;
@@ -11,7 +12,7 @@ class CreateTaskWidget extends StatefulWidget {
 class _CreateTaskWidgetState extends State<CreateTaskWidget> {
   bool _isOnWay = false;
   Function _changeCreateBool;
-
+  late Operaions operaion;
   _CreateTaskWidgetState(this._changeCreateBool);
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
