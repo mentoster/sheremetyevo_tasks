@@ -69,28 +69,26 @@ class _LoginScreenState extends State<LoginScreen> {
       ChooseType(_nextPage, _chooseClass),
       WayMap(_isEngineer),
     ];
-    return _page == 2
-        ? Scaffold(
-            appBar: AppBar(
-              title: Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        _backPage();
-                      },
-                      icon: Icon(Icons.arrow_back_ios)),
-                  Expanded(
-                    child: Text(
-                      titleText,
-                      overflow: TextOverflow.fade,
-                      softWrap: true,
-                    ),
-                  ),
-                ],
+    return Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    _backPage();
+                  },
+                  icon: Icon(Icons.arrow_back_ios)),
+              Expanded(
+                child: Text(
+                  titleText,
+                  overflow: TextOverflow.fade,
+                  softWrap: true,
+                ),
               ),
-            ),
-            // backgroundColor: Theme.of(context).accentColor,
-            body: pages[_page])
-        : pages[_page];
+            ],
+          ),
+        ),
+        // backgroundColor: Theme.of(context).accentColor,
+        body: pages[_page]);
   }
 }

@@ -21,16 +21,14 @@ class WayMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SlidingUpPanel(
-        parallaxEnabled: true,
-        backdropEnabled: true,
-        panel: Center(
-          child: _isEngineer ? EngineerBottomMenu() : WorkerBottomMenu(),
-        ),
-        body: body(),
-        borderRadius: radius,
+    return SlidingUpPanel(
+      parallaxEnabled: true,
+      backdropEnabled: true,
+      panel: Center(
+        child: _isEngineer ? EngineerBottomMenu() : WorkerBottomMenu(),
       ),
+      body: body(),
+      borderRadius: radius,
     );
   }
 }
