@@ -40,6 +40,12 @@ class Task extends StatelessWidget {
                     print('Received click');
                   },
                   child: const Text('Выполнено'),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    )),
+                  ),
                 ),
               ),
             ],

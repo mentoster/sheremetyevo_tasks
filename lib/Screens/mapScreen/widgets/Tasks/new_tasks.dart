@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/new_task.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/tasks_list.dart';
 
 class NewTasks extends StatelessWidget {
   @override
@@ -14,11 +15,7 @@ class NewTasks extends StatelessWidget {
             "Новые задания:",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          Column(
-            children: [
-              NewTask(),
-            ],
-          ),
+          TaskList([NewTask()]),
         ],
       ),
     );

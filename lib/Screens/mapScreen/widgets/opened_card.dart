@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/create_new_task.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/new_task.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/new_tasks.dart';
 import 'package:sheremetyevo_tasks/Screens/mapScreen/widgets/Tasks/tasks.dart';
 
@@ -22,8 +24,8 @@ class EngineerBottomMenu extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Tasks(),
-          NewTasks(),
+          NewTaskMenu(),
+          InsideNewTask(),
         ],
       ),
     );

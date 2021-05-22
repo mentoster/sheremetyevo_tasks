@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/chooseType.dart';
 import 'package:sheremetyevo_tasks/Screens/loginscreen/choose_character.dart';
-import 'package:sheremetyevo_tasks/Screens/mapScreen/way_map.dart';
+import 'package:sheremetyevo_tasks/Screens/mapScreen/main_map.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
