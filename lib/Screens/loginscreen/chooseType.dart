@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sheremetyevo_tasks/Models/coordservice.pbenum.dart';
 
 class ChooseType extends StatelessWidget {
   final Function nextPage;
@@ -6,6 +7,29 @@ class ChooseType extends StatelessWidget {
   ChooseType(this.nextPage, this.changeClass);
   void _chooseClass(String type) {
     nextPage();
+
+    Resuource res;
+    switch (type) {
+      case "Человек":
+        res = Resuource.HUMAN;
+        break;
+      case "грузчик/самосвал":
+        res = Resuource.TRUCK;
+        break;
+      case "экскаватор":
+        res = Resuource.ECAVATOR;
+        break;
+      case "роторный погрузчик":
+        res = Resuource.ROTARY_LOADER;
+        break;
+      case "плужно-щеточная машина":
+        res = Resuource.PLOW_AND_BRUSH_MACHINE;
+        break;
+      case "плужно-щеточная машина с реагентом.":
+        res = Resuource.PLOW_AND_BRUSH_MACHINE_REG;
+        break;
+      default:
+    }
     changeClass(type);
   }
 
@@ -25,8 +49,8 @@ class ChooseType extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TypeButton("грузовик", _chooseClass),
-                TypeButton("самосвал", _chooseClass),
+                TypeButton("Человек", _chooseClass),
+                TypeButton("грузчик/самосвал", _chooseClass),
                 TypeButton("экскаватор", _chooseClass),
                 TypeButton("роторный погрузчик", _chooseClass),
                 TypeButton("плужно-щеточная машина", _chooseClass),
